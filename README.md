@@ -188,26 +188,3 @@ source install/setup.bash
 colcon test --packages-select aero_halo_360
 colcon test-result --verbose
 ```
-
-建议的现场验证顺序：
-
-1. 不连接飞控，只运行合成点云，确认四个方向扇区正确。
-2. 启动 MAVLink sender，但不发布扇区数据，确认它发送虚拟墙。
-3. 发布高度范围外的非空点云，确认输出为 clear-space 警告而不是虚拟墙。
-4. 连接 Mission Planner，确认 Proximity 视图与实际障碍方向一致。
-5. 空桨或约束条件下检查 Loiter、AUTO、GUIDED 等模式的避障响应。
-
-## 文档索引
-
-- `docs/architecture.md`：系统结构和数据流。
-- `docs/hardware_wiring.md`：硬件连接和供电建议。
-- `docs/ardupilot_setup.md`：ArduPilot 参数和模式配置。
-- `docs/quick_start.md`：从编译到台架验证的快速流程。
-- `docs/tuning_guide.md`：滤波、膨胀、Watchdog 和 MAVLink 调参。
-- `docs/test_sop.md`：台架和外场测试 SOP。
-- `docs/safety_notes.md`：安全边界与失效模式。
-- `docs/roadmap.md`：后续版本计划。
-
-## 编码说明
-
-本 README 使用 UTF-8 保存。若看到中文乱码，请确认编辑器按 UTF-8 打开文件；不要使用 ANSI/GBK 重新保存。
