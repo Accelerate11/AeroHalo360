@@ -1,0 +1,23 @@
+[Unit]
+Description=AeroHalo360 MAVLink sender
+After=network-online.target aero-halo-360-cloud.service
+Wants=network-online.target aero-halo-360-cloud.service
+StartLimitIntervalSec=60
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=@AERO_USER@
+EnvironmentFile=/etc/aero-halo-360/env
+ExecStartPre=/bin/bash -lc 'test -f "$ROS_SETUP"'
+ExecStartPre=/bin/bash -lc 'case "$MAVLINK_CONNECTION" in /dev/*) test -e "$MAVLINK_CONNECTION" ;; *) exit 0 ;; esac'
+ExecStart=/bin/bash -lc 'source "$ROS_SETUP"; source "$AERO_WORKSPACE/install/setup.bash"; exec ros2 run aero_halo_360 mavlink_obstacle_sender.py --ros-args --params-file "$BASE_CONFIG" --params-file "$PROFILE_CONFIG" -p mavlink.connection:="$MAVLINK_CONNECTION" -p mavlink.baud:="$MAVLINK_BAUD"'
+Restart=on-failure
+RestartSec=2
+TimeoutStopSec=10
+KillMode=control-group
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

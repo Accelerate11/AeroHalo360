@@ -1,0 +1,21 @@
+[Unit]
+Description=AeroHalo360 静态 LiDAR TF
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=@AERO_USER@
+EnvironmentFile=/etc/aero-halo-360/env
+ExecStart=/bin/bash -lc 'source "$ROS_SETUP"; exec ros2 run tf2_ros static_transform_publisher --x "$LIDAR_X" --y "$LIDAR_Y" --z "$LIDAR_Z" --roll "$LIDAR_ROLL" --pitch "$LIDAR_PITCH" --yaw "$LIDAR_YAW" --frame-id "$LIDAR_PARENT_FRAME" --child-frame-id "$LIDAR_CHILD_FRAME"'
+Restart=on-failure
+RestartSec=2
+TimeoutStopSec=5
+KillMode=control-group
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

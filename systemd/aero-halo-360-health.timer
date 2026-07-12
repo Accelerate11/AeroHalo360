@@ -1,0 +1,11 @@
+[Unit]
+Description=每 5 秒检查 AeroHalo360 传感与发送健康状态
+
+[Timer]
+OnBootSec=20
+OnUnitActiveSec=5
+AccuracySec=1
+Unit=aero-halo-360-health.service
+
+[Install]
+WantedBy=timers.target

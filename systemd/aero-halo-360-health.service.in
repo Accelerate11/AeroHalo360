@@ -1,0 +1,11 @@
+[Unit]
+Description=AeroHalo360 只读健康检查
+After=aero-halo-360-cloud.service aero-halo-360-sender.service
+
+[Service]
+Type=oneshot
+User=@AERO_USER@
+EnvironmentFile=/etc/aero-halo-360/env
+ExecStart=/bin/bash -lc 'source "$ROS_SETUP"; source "$AERO_WORKSPACE/install/setup.bash"; exec "$AERO_SOURCE/nano_deploy/05_health_check.sh"'
+StandardOutput=journal
+StandardError=journal

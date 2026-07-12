@@ -1,0 +1,23 @@
+[Unit]
+Description=Livox MID360 ROS 2 驱动
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=@AERO_USER@
+EnvironmentFile=/etc/aero-halo-360/env
+ExecStartPre=/bin/bash -lc 'test -f "$ROS_SETUP"'
+ExecStartPre=/bin/bash -lc 'test -f "$LIVOX_WORKSPACE/install/setup.bash"'
+ExecStart=/bin/bash -lc 'source "$ROS_SETUP"; source "$LIVOX_WORKSPACE/install/setup.bash"; exec ros2 launch livox_ros_driver2 "$LIVOX_LAUNCH_FILE"'
+Restart=on-failure
+RestartSec=2
+TimeoutStopSec=10
+KillMode=control-group
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

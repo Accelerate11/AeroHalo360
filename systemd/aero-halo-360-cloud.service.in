@@ -1,0 +1,24 @@
+[Unit]
+Description=AeroHalo360 点云处理节点
+After=network-online.target livox-mid360.service
+Wants=network-online.target livox-mid360.service
+StartLimitIntervalSec=60
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=@AERO_USER@
+EnvironmentFile=/etc/aero-halo-360/env
+ExecStartPre=/bin/bash -lc 'test -f "$ROS_SETUP"'
+ExecStartPre=/bin/bash -lc 'test -f "$BASE_CONFIG"'
+ExecStartPre=/bin/bash -lc 'test -f "$PROFILE_CONFIG"'
+ExecStart=/bin/bash -lc 'source "$ROS_SETUP"; source "$AERO_WORKSPACE/install/setup.bash"; exec ros2 run aero_halo_360 cloud_processor_node --ros-args --params-file "$BASE_CONFIG" --params-file "$PROFILE_CONFIG"'
+Restart=on-failure
+RestartSec=2
+TimeoutStopSec=10
+KillMode=control-group
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
