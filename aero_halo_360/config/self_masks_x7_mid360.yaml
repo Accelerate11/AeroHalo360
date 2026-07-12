@@ -1,0 +1,17 @@
+# 未标定示例：禁止默认加载，所有包围盒必须按实机点云重新测量。
+/**:
+  ros__parameters:
+    self_mask:
+      names: ["body", "front_mount", "landing_gear_left", "landing_gear_right"]
+      body:
+        min: [-0.45, -0.45, -0.30]
+        max: [ 0.45,  0.45,  0.25]
+      front_mount:
+        min: [ 0.10, -0.10, -0.20]
+        max: [ 0.45,  0.10,  0.30]
+      landing_gear_left:
+        min: [-0.30,  0.25, -0.60]
+        max: [ 0.30,  0.45,  0.05]
+      landing_gear_right:
+        min: [-0.30, -0.45, -0.60]
+        max: [ 0.30, -0.25,  0.05]

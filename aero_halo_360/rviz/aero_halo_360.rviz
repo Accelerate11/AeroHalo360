@@ -1,0 +1,30 @@
+Panels:
+  - Class: rviz_common/Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Enabled: true
+      Name: Grid
+    - Class: rviz_default_plugins/PointCloud2
+      Enabled: true
+      Name: Filtered Cloud
+      Topic:
+        Value: /aero_halo_360/filtered_cloud
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: Sector Rays
+      Topic:
+        Value: /aero_halo_360/markers
+  Global Options:
+    Fixed Frame: base_link
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 8
+      Pitch: 0.785
+      Yaw: 0.785

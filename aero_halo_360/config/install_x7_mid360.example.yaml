@@ -1,0 +1,15 @@
+# X7 + MID360 安装参数示例，数值不是实机标定结果。
+# MID360 外壳 +X 标记可能与 M12 接口朝向相反；必须用四方向实测确认。
+# 测量单位为米和弧度，飞行前请复制为本机专用文件并填写测量值。
+/**:
+  ros__parameters:
+    installation:
+      static_tf:
+        enable: false
+        parent_frame: "base_link"
+        child_frame: "livox_frame"
+        xyz: [0.0, 0.0, 0.0]
+        rpy: [0.0, 0.0, 0.0]
+      calibration_status: "UNCALIBRATED_EXAMPLE"
+      platform: "X7"
+      lidar: "MID360"

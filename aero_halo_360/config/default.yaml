@@ -1,0 +1,113 @@
+/**:
+  ros__parameters:
+    input_topic: "/livox/lidar"
+    target_frame: "base_link"
+    filtered_cloud_topic: "/aero_halo_360/filtered_cloud"
+    sector_topic: "/aero_halo_360/sector_distances"
+    marker_topic: "/aero_halo_360/markers"
+    diagnostics_topic: "/aero_halo_360/diagnostics"
+    publish_rate_hz: 10.0
+
+    timestamp:
+      mode: live
+      max_sensor_age_ms: 700
+      future_tolerance_ms: 100
+      max_repeated_frames: 2
+
+    debug:
+      publish_filtered_cloud: true
+      publish_markers: true
+      publish_diagnostics: true
+
+    pointcloud_limits:
+      max_points: 1000000
+      max_bytes: 67108864
+      allow_bigendian: false
+      max_nonfinite_fraction: 0.05
+
+    range_filter:
+      min_range_m: 0.25
+      max_range_m: 10.0
+
+    height_filter:
+      z_min_m: -0.40
+      z_max_m: 1.20
+
+    voxel_filter:
+      enable: true
+      leaf_size_m: 0.05
+
+    radius_outlier:
+      enable: true
+      radius_m: 0.15
+      min_neighbors: 2
+
+    sectorizer:
+      sector_deg: 5.0
+      radial_bin_width_m: 0.25
+      percentile: 0.20
+      near_range_m: 3.0
+      mid_range_m: 6.0
+      near_min_points: 3
+      mid_min_points: 2
+      far_min_points: 1
+
+    temporal_filter:
+      enable: true
+      clear_frames: 3
+      receding_alpha: 0.4
+      approaching_immediate: true
+
+    vehicle:
+      radius_m: 0.45
+      safety_extra_m: 0.25
+
+    inflation:
+      enable: true
+      max_inflate_bins: 36
+
+    watchdog:
+      cloud_warn_timeout_ms: 400
+      cloud_fail_timeout_ms: 800
+      recovery_healthy_frames: 3
+      degraded_mode: "virtual_wall"
+      virtual_wall_cm: 80
+      min_processing_rate_hz: 5.0
+      tf_failure_limit: 3
+      raw_cloud_empty_limit: 3
+      empty_cloud_limit: 3
+      filtered_empty_is_clear: false
+      filtered_empty_warn_only: false
+
+    # 默认不加载任何未经实机标定的自遮挡盒。
+    self_mask:
+      names: []
+
+    mavlink:
+      connection: "udpout:127.0.0.1:14550"
+      baud: 921600
+      source_system: 1
+      source_component: 191
+      target_system: 1
+      target_component: 1
+      send_rate_hz: 10.0
+      sensor_type: 0
+      frame: 12
+      min_distance_cm: 25
+      max_distance_cm: 1000
+      increment_deg: 5
+      angle_offset_deg: 0.0
+      heartbeat_rate_hz: 1.0
+      input_warn_timeout_ms: 600
+      input_fail_timeout_ms: 1000
+      recovery_healthy_frames: 3
+      max_source_age_ms: 1000
+      fail_closed: true
+      startup_mode: "virtual_wall"
+      virtual_wall_cm: 80
+      wait_heartbeat_on_connect: true
+      heartbeat_timeout_ms: 3000
+      reconnect_initial_ms: 500
+      reconnect_max_ms: 10000
+      diagnostics_topic: "/aero_halo_360/mavlink_diagnostics"
+      statustext_on_degraded: true

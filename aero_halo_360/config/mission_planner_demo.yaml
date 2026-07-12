@@ -1,0 +1,44 @@
+# NOT FOR FLIGHT
+# 仅用于拆桨状态下的 Mission Planner 可视化和方向检查。
+# 文档要求 AVOID_ENABLE=0、OA_TYPE=0；本文件不会写入飞控参数。
+/**:
+  ros__parameters:
+    target_frame: "base_link"
+
+    debug:
+      publish_filtered_cloud: true
+      publish_markers: true
+      publish_diagnostics: true
+
+    radius_outlier:
+      enable: false
+
+    temporal_filter:
+      enable: false
+      clear_frames: 1
+      receding_alpha: 1.0
+      approaching_immediate: true
+
+    inflation:
+      enable: false
+      max_inflate_bins: 36
+
+    watchdog:
+      cloud_warn_timeout_ms: 700
+      cloud_fail_timeout_ms: 1200
+      recovery_healthy_frames: 2
+      degraded_mode: "virtual_wall"
+      virtual_wall_cm: 80
+      filtered_empty_is_clear: true
+      filtered_empty_warn_only: true
+
+    mavlink:
+      connection: "udpout:127.0.0.1:14550"
+      fail_closed: true
+      input_warn_timeout_ms: 900
+      input_fail_timeout_ms: 1400
+      recovery_healthy_frames: 2
+      max_source_age_ms: 1400
+      startup_mode: "virtual_wall"
+      virtual_wall_cm: 80
+      wait_heartbeat_on_connect: false

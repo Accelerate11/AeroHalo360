@@ -1,0 +1,49 @@
+# 低速飞行候选配置。尚未完成 TF、安装方向、自遮挡、时延与实飞验证。
+# 仅允许在完成文档门禁后用于拆桨、约束和低速空旷测试。
+/**:
+  ros__parameters:
+    target_frame: "base_link"
+
+    debug:
+      publish_filtered_cloud: false
+      publish_markers: false
+      publish_diagnostics: true
+
+    voxel_filter:
+      enable: true
+      leaf_size_m: 0.05
+
+    radius_outlier:
+      enable: true
+      radius_m: 0.15
+      min_neighbors: 2
+
+    temporal_filter:
+      enable: true
+      clear_frames: 3
+      receding_alpha: 0.4
+      approaching_immediate: true
+
+    inflation:
+      enable: true
+      max_inflate_bins: 36
+
+    watchdog:
+      cloud_warn_timeout_ms: 400
+      cloud_fail_timeout_ms: 800
+      recovery_healthy_frames: 3
+      degraded_mode: "virtual_wall"
+      virtual_wall_cm: 100
+      filtered_empty_is_clear: false
+      filtered_empty_warn_only: false
+
+    mavlink:
+      fail_closed: true
+      input_warn_timeout_ms: 600
+      input_fail_timeout_ms: 1000
+      recovery_healthy_frames: 3
+      max_source_age_ms: 1000
+      startup_mode: "virtual_wall"
+      virtual_wall_cm: 100
+      wait_heartbeat_on_connect: true
+      heartbeat_timeout_ms: 3000

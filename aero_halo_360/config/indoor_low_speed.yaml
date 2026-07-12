@@ -1,0 +1,30 @@
+# 实验配置：未经过室内实机认证，不得视为可飞参数。
+/**:
+  ros__parameters:
+    range_filter:
+      min_range_m: 0.25
+      max_range_m: 6.0
+    height_filter:
+      z_min_m: -0.25
+      z_max_m: 1.00
+    voxel_filter:
+      enable: true
+      leaf_size_m: 0.04
+    sectorizer:
+      radial_bin_width_m: 0.20
+      near_min_points: 3
+      mid_min_points: 2
+      far_min_points: 2
+    temporal_filter:
+      clear_frames: 4
+      receding_alpha: 0.35
+    inflation:
+      max_inflate_bins: 36
+    watchdog:
+      degraded_mode: "virtual_wall"
+      virtual_wall_cm: 80
+      filtered_empty_is_clear: false
+      filtered_empty_warn_only: false
+    mavlink:
+      max_distance_cm: 600
+      wait_heartbeat_on_connect: true

@@ -1,0 +1,10 @@
+std_msgs/Header header
+uint64 source_sequence
+float32 source_age_ms
+uint16[72] distances
+uint16 min_distance_cm
+uint16 max_distance_cm
+float32 increment_deg
+float32 angle_offset_deg
+uint8 status
+string status_text
